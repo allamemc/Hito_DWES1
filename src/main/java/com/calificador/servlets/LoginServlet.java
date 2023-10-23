@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
             rd.include(request, response);
         } else {
-            request.setAttribute("nuevoFormulario","Adioses " + login);
+            request.setAttribute("nuevoFormulario","Adiosesfw " + login);
             RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
             rd.include(request, response);
         }
