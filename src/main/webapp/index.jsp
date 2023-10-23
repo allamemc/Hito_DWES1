@@ -43,7 +43,7 @@
                     />
                 </div>
                 <div class="form_caja b">
-                    <button type="submit" class="envio">Enviar</button>
+                    <button type="submit" class="envio">Enviare</button>
                 </div>
             </form>
         </div>
