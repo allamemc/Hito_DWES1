@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
         e.nuevoAlumno("Alicia", "2345");
         e.nuevoAlumno("Miguel", "2345");
 
+
         //creamos una sesion para mantener los datos mientras dure la sesion
         session.setAttribute("escuela", e);
 
