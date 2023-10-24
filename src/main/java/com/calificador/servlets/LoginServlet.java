@@ -1,6 +1,8 @@
 package com.calificador.servlets;
 
+import com.calificador.models.Alumno;
 import com.calificador.models.Escuela;
+import com.calificador.models.Profesor;
 import com.calificador.util.Autenticacion;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -28,9 +30,26 @@ public class LoginServlet extends HttpServlet {
 
         //DATOS A LOS QUE ACCEDER
         e.nuevoProfesor("Pepe", "1234", "Matemáticas, Física");
+        e.nuevoProfesor("Luisa", "1234", "Historia");
         e.nuevoProfesor("Juan", "1234", "Informática");
+        e.nuevoProfesor("Ana", "1234", "Biología");
+        e.nuevoProfesor("Carlos", "1234", "Química");
+        e.nuevoProfesor("Elena", "1234", "Lengua");
+        e.nuevoProfesor("Sofía", "1234", "Arte");
+        e.nuevoProfesor("Pedro", "1234", "Música");
+        e.nuevoProfesor("María", "1234", "Educación Física");
+        e.nuevoProfesor("Javier", "1234", "Geografía");
         e.nuevoAlumno("Alicia", "2345");
         e.nuevoAlumno("Miguel", "2345");
+        e.nuevoAlumno("Juan", "2345");
+        e.nuevoAlumno("Ana", "2345");
+        e.nuevoAlumno("Pedro", "2345");
+        e.nuevoAlumno("Luis", "2345");
+        e.nuevoAlumno("Elena", "2345");
+        e.nuevoAlumno("Sofía", "2345");
+        e.nuevoAlumno("Carlos", "2345");
+        e.nuevoAlumno("Laura", "2345");
+
 
 
         //creamos una sesion para mantener los datos mientras dure la sesion
@@ -42,22 +61,33 @@ public class LoginServlet extends HttpServlet {
 
         //autenticamos
         Autenticacion autenticacion = new Autenticacion(e);
-        boolean isTeacher = autenticacion.autenticar(login, password);
+        String authUser = autenticacion.autenticar(login, password);
 
-        if (isTeacher) {
-            request.setAttribute("nuevoFormulario","Adios profesor " + login);
-            RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
+        if (authUser.equals("Profesor")) {
+            Profesor profesor = (Profesor) e.getUsuarios().get(login);
+
+            // Guarda la instancia de Profesor en la sesión
+            session.setAttribute("usuario", "profesor");
+            session.setAttribute("login", login);
+            session.setAttribute("profesorLogueado", profesor);
+            RequestDispatcher rd=request.getRequestDispatcher("/profesor.jsp");
             rd.include(request, response);
-        } else {
-            request.setAttribute("nuevoFormulario","Adios " + login);
-            RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
+        } else if (authUser.equals("Alumno")){
+            Alumno alumno = (Alumno) e.getUsuarios().get(login);
+
+            // Guarda la instancia de Alumno en la sesión
+            session.setAttribute("usuario", "alumno");
+            session.setAttribute("login", login);
+            session.setAttribute("alumnoLogueado", alumno);
+            RequestDispatcher rd=request.getRequestDispatcher("/alumno.jsp");
+            rd.include(request, response);
+        }else{
+            request.setAttribute("respuesta", "<a href=\"\" class=\"enlace\"><h3 style='color:red;'>No existe</h3></a>");
+            RequestDispatcher rd=request.getRequestDispatcher("/login.jsp");
             rd.include(request, response);
         }
 
 
 
-
-        RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
-        rd.include(request, response);
     }
 }

@@ -9,17 +9,21 @@ public class Autenticacion {
         this.escuela = escuela;
     }
 
-    public boolean autenticar(String login, String password) {
+    public String autenticar(String login, String password) {
 
         Usuario usuario = escuela.getUsuarios().get(login);
-
+        String respuesta = "";
 
         if (usuario != null && usuario.getPassword().equals(password)) {
             if (usuario instanceof Profesor) {
-                return true; 
+                respuesta = "Profesor";
+            }else if (usuario instanceof Alumno){
+                respuesta = "Alumno";
+            }else{
+                respuesta = "None";
             }
         }
-        return false; 
+        return respuesta;
     }
 }
 
