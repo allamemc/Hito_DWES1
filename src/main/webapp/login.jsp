@@ -56,6 +56,7 @@
                 id="username"
                 name="login"
                 placeholder="e.g. juan"
+                required
         />
       </div>
       <div class="form-group">
@@ -65,6 +66,7 @@
                 id="password"
                 name="password"
                 placeholder="1234******"
+                required
         />
       </div>
       <div style="text-align: center">

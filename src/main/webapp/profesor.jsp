@@ -116,6 +116,7 @@
                                         id="asig"
                                         name="asig"
                                         placeholder="e.g. Lengua"
+                                        required
                                 />
                             </div>
                             <div class="form-group">
@@ -126,6 +127,7 @@
                                         id="nota"
                                         name="nota"
                                         placeholder="e.g. 100"
+                                        required
                                 />
                             </div>
                                 <%
