@@ -54,9 +54,10 @@
             Alumno alumno = (Alumno) session.getAttribute("alumno");
             %>
             Bienvenido, <%= nombre %>
+            <div style="font-size: 15px">Aqui podras ver datos de los alumnos</div>
 
-            <div class="pequeño">Aqui podras ver datos de los alumnos</div>
         </div>
+
         <div class="caja_flex">
             <div class="listado">
                 <h3>Listado Alumnos</h3>

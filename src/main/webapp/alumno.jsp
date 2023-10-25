@@ -56,7 +56,7 @@
             %>
             Bienvenido, <%= nombre %>
 
-            <div class="pequeño">Aqui podras tus notas</div>
+            <div style="font-size: 15px">Aqui podras ver tus notas</div>
         </div>
         <div class="caja_flex">
             <div class="informacion" style="width: 100%">
