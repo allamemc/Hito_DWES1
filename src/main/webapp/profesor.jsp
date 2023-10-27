@@ -53,7 +53,7 @@
             String nombre = (String) session.getAttribute("login");
             Alumno alumno = (Alumno) session.getAttribute("alumno");
             %>
-            Bienvenido, <%= nombre %>
+            Hola, <%= nombre %>!
             <div style="font-size: 15px">Aqui podras ver datos de los alumnos</div>
 
         </div>

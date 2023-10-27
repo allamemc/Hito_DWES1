@@ -54,7 +54,7 @@
                 String nombre = (String) session.getAttribute("login");
                 Alumno alumno = (Alumno) session.getAttribute("alumnoLogueado");
             %>
-            Bienvenido, <%= nombre %>
+            Hola, <%= nombre %>!
 
             <div style="font-size: 15px">Aqui podras ver tus notas</div>
         </div>
@@ -89,6 +89,7 @@
         </div>
     </div>
 </section>
+
 <%
     }
 %>

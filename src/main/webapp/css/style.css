@@ -214,3 +214,111 @@ th, td {
     bottom: 0;
     width: 100%;
 }
+.header{
+    background-color: #484848;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    border-radius: 10px;
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 30px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s;
+}
+
+.header:hover{
+    transform: translateY(-3px);
+}
+
+.heading-primary{
+    text-align: center;
+    text-transform: uppercase;
+    color: white;
+}
+
+.heading-primary-main{
+    display: block;
+    font-size: 64px;
+    font-weight: 900;
+    letter-spacing: 10px;
+    animation: moveInRight 1.5s ease-out;
+}
+.heading-primary-sub{
+    display: block;
+    font-size: 29px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    animation: moveInLeft 1.5s ease-out;
+}
+
+@keyframes moveInRight{
+    0%{
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    80%{
+        transform: translateX(30px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+@keyframes moveInLeft{
+    0%{
+        opacity: 0;
+        transform: translateX(100px);
+    }
+
+    80%{
+        transform: translateX(-30px);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.descripcion{
+    display: flex;
+    width: 1000px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    color: white;
+    gap: 40px;
+}
+
+.titulo{
+    width: 60%;
+}
+
+.title-notice{
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-main{
+    font-size: 40px;
+}
+
+.titulo-sub{
+    font-size: 19px;
+}
+
+.contenido{
+    width: 40%;
+    background: linear-gradient(to right,#777,#fff,0.8);
+    background-image: url("../img/escuela-activa.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+    height: 500px;
+}
