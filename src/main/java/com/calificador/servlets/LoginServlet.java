@@ -5,6 +5,7 @@ import com.calificador.models.Escuela;
 import com.calificador.models.Profesor;
 import com.calificador.util.Autenticacion;
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -16,19 +17,9 @@ import java.io.IOException;
 
 @WebServlet(name = "LoginServlet", value = "/LoginServlet")
 public class LoginServlet extends HttpServlet {
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
-
-
+    public void init() {
         Escuela e = new Escuela();
-
-        //DATOS A LOS QUE ACCEDER
         e.nuevoProfesor("Pepe", "1234", "Matemáticas, Física");
         e.nuevoProfesor("Luisa", "1234", "Historia");
         e.nuevoProfesor("Juan", "1234", "Informática");
@@ -50,21 +41,32 @@ public class LoginServlet extends HttpServlet {
         e.nuevoAlumno("Carlos", "2345");
         e.nuevoAlumno("Laura", "2345");
 
+        ServletContext context = getServletContext();
+        context.setAttribute("miEscuela", e);
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    }
 
-        //creamos una sesion para mantener los datos mientras dure la sesion
-        session.setAttribute("escuela", e);
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession(true);
+
+        ServletContext context = getServletContext();
+        Escuela escuela = (Escuela) context.getAttribute("miEscuela");
+
 
         //recogemos login y contraseña
         String login = request.getParameter("login"); // Nombre de usuario
         String password = request.getParameter("password"); // Contraseña
 
         //autenticamos
-        Autenticacion autenticacion = new Autenticacion(e);
+        Autenticacion autenticacion = new Autenticacion(escuela);
         String authUser = autenticacion.autenticar(login, password);
 
         if (authUser.equals("Profesor")) {
-            Profesor profesor = (Profesor) e.getUsuarios().get(login);
+            Profesor profesor = (Profesor) escuela.getUsuarios().get(login);
 
             // Guarda la instancia de Profesor en la sesión
             session.setAttribute("usuario", "profesor");
@@ -73,7 +75,7 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher rd=request.getRequestDispatcher("/profesor.jsp");
             rd.include(request, response);
         } else if (authUser.equals("Alumno")){
-            Alumno alumno = (Alumno) e.getUsuarios().get(login);
+            Alumno alumno = (Alumno) escuela.getUsuarios().get(login);
 
             // Guarda la instancia de Alumno en la sesión
             session.setAttribute("usuario", "alumno");

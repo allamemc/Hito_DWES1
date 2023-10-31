@@ -1,6 +1,7 @@
 package com.calificador.servlets;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -35,8 +36,8 @@ public class ProfesorProfileServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		String nombreAlumno = request.getParameter("alumno");
 
-// Obtenemos la instancia de Escuela desde la sesión
-		Escuela e = (Escuela) session.getAttribute("escuela");
+		ServletContext context = getServletContext();
+		Escuela e = (Escuela) context.getAttribute("miEscuela");
 
 // Buscamos el alumno por su nombre
 		Alumno alumnoEncontrado = null;

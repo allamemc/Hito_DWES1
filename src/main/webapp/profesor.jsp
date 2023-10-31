@@ -64,7 +64,7 @@
                 <ul>
                     <%
                         // Obtener la instancia de Escuela desde la sesión
-                        Escuela escuela = (Escuela) session.getAttribute("escuela");
+                        Escuela escuela = (Escuela) application.getAttribute("miEscuela");
 
                         if (escuela != null) {
                             for (Usuario user : escuela.getUsuarios().values()) {
